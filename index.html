@@ -29,27 +29,27 @@
     }
 
     .container {
-        background: #f5f5f5;
-        width: 400px;
-        height: 825px;
-        border-radius: 1rem;
-        margin: auto;
-        position: relative;
         box-shadow: 0 0 1rem black;
+        background: #f5f5f5;
+        border-radius: 1rem;
+        position: relative;
+        height: 825px;
+        width: 400px;
+        margin: auto;
     }
 
     /* Cover Container */
 
     .cover {
         box-shadow: 0 0 1rem #333;
+        background: #0e1117;
+        border-radius: 1rem;
         position: absolute;
+        overflow: hidden;
+        margin: 0 auto;
+        height: 200px;
         width: 400px;
         left: 0;
-        height: 200px;
-        margin: 0 auto;
-        overflow: hidden;
-        border-radius: 1rem;
-        background: #0e1117;
     }
 
     .glow {
@@ -100,26 +100,26 @@
     }
 
     .profile {
-        position: absolute;
-        width: 150px;
-        height: 150px;
+        box-shadow: 0 0 1rem 0.5rem #333;
+        transform: translate(-50% -50%);
         border: 3px solid #f5f5f5;
+        position: absolute;
         border-radius: 50%;
-        z-index: 1;
         align-self: center;
-        left: 30%;
+        height: 150px;
+        width: 150px;
+        z-index: 1;
         right: 30%;
         top: 120px;
-        transform: translate(-50% -50%);
-        box-shadow: 0 0 1rem 0.5rem #333;
+        left: 30%;
     }
 
     .personname {
         position: absolute;
-        top: 290px;
         text-align: center;
-        left: 0;
         width: 100%;
+        top: 290px;
+        left: 0;
 
     }
 
@@ -179,22 +179,22 @@
     }
 
     .contact a {
-        padding: 10px;
-        border-radius: 1rem;
+        font-family: Arial, Helvetica, sans-serif;
+        transition: all 0.1s ease-in-out;
         background-color: #0d6efd;
-        width: 300px;
-        text-align: center;
         text-decoration: none;
+        border-radius: 1rem;
+        align-self: center;
+        text-align: center;
         color: #f5f5f5;
         font-size: 18px;
-        font-family: Arial, Helvetica, sans-serif;
-        align-self: center;
-        transition: all 0.1s ease-in-out;
+        padding: 10px;
+        width: 300px;
     }
 
     .contact a:hover {
-        transform: scale(1);
         box-shadow: inset 0 0 1rem #333;
+        transform: scale(1);
     }
 
     .contact a:active {
@@ -202,33 +202,33 @@
     }
 
     .foot {
-        position: absolute;
-        display: flex;
         justify-content: center;
         flex-direction: row;
-        gap: 25px;
-        top: 750px;
-        left: 0;
+        position: absolute;
+        display: flex;
         width: 100%;
+        top: 750px;
+        gap: 25px;
+        left: 0;
     }
 
     .foot a {
-        padding: 10px;
-        border-radius: 1rem;
+        font-family: Arial, Helvetica, sans-serif;
+        transition: all 0.1s ease-in-out;
         background-color: #707070;
-        width: 200px;
-        text-align: center;
         text-decoration: none;
+        border-radius: 1rem;
+        text-align: center;
+        align-self: center;
         color: #f5f5f5;
         font-size: 18px;
-        font-family: Arial, Helvetica, sans-serif;
-        align-self: center;
-        transition: all 0.1s ease-in-out;
+        padding: 10px;
+        width: 200px;
     }
 
     .foot a:hover {
-        transform: scale(1);
         box-shadow: inset 0 0 1rem black;
+        transform: scale(1);
     }
 
     .foot a:active {

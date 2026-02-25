@@ -4,17 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Caches the Glass glowing animation -->
     <meta http-equiv="Cache-Control" content="max-age=31536000, immutable">
-    
     <title>Chris Robinson | NFC</title>
-
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-
 </head>
 
 <style>
@@ -39,7 +33,6 @@
     }
 
     /* Cover Container */
-
     .cover {
         box-shadow: 0 0 1rem #333;
         background: #0e1117;
@@ -55,6 +48,10 @@
         isolation: isolate;
     }
 
+    /* 
+        Each glow blob is a fixed colour.
+        We only animate opacity + transform — both GPU composited, no repaints.
+    */
     .glow {
         position: absolute;
         width: 400px;
@@ -62,48 +59,67 @@
         border-radius: 50%;
         filter: blur(80px);
         -webkit-filter: blur(80px);
-        opacity: 0.6;
-        top: -100px;
-        left: -100px;
-        will-change: transform, background;
+        will-change: transform, opacity;
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
-        animation: colorShift 12s ease-in-out infinite alternate,
-            float 18s ease-in-out infinite alternate;
     }
 
-    .glow2 {
+    /* Blob 1 — cyan, floats around top-left */
+    .glow-cyan {
+        background: #00c3ff;
+        top: -100px;
+        left: -100px;
+        animation: float-a 18s ease-in-out infinite alternate,
+                   fade-a 12s ease-in-out infinite alternate;
+    }
+
+    /* Blob 2 — purple, floats around centre */
+    .glow-purple {
+        background: #7c3aed;
         top: 50px;
         left: 150px;
-        animation-delay: 4s;
+        animation: float-b 20s ease-in-out infinite alternate,
+                   fade-b 12s ease-in-out infinite alternate;
     }
 
-    @keyframes colorShift {
-        0% {
-            background: #00c3ff;
-        }
-
-        33% {
-            background: #7c3aed;
-        }
-
-        66% {
-            background: #00f5d4;
-        }
-
-        100% {
-            background: #00c3ff;
-        }
+    /* Blob 3 — teal, floats around right */
+    .glow-teal {
+        background: #00f5d4;
+        top: -80px;
+        left: 200px;
+        animation: float-c 15s ease-in-out infinite alternate,
+                   fade-c 12s ease-in-out infinite alternate;
     }
 
-    @keyframes float {
-        from {
-            transform: translateZ(0) translate(0px, 0px);
-        }
+    @keyframes float-a {
+        from { transform: translateZ(0) translate(0px, 0px); }
+        to   { transform: translateZ(0) translate(40px, 30px); }
+    }
+    @keyframes float-b {
+        from { transform: translateZ(0) translate(0px, 0px); }
+        to   { transform: translateZ(0) translate(-30px, 20px); }
+    }
+    @keyframes float-c {
+        from { transform: translateZ(0) translate(0px, 0px); }
+        to   { transform: translateZ(0) translate(-40px, 25px); }
+    }
 
-        to {
-            transform: translateZ(0) translate(40px, 30px);
-        }
+    /* Staggered opacity fades create the colour-shift illusion */
+    @keyframes fade-a {
+        0%   { opacity: 0.7; }
+        50%  { opacity: 0.2; }
+        100% { opacity: 0.7; }
+    }
+    @keyframes fade-b {
+        0%   { opacity: 0.2; }
+        50%  { opacity: 0.7; }
+        100% { opacity: 0.2; }
+    }
+    @keyframes fade-c {
+        0%   { opacity: 0.5; }
+        33%  { opacity: 0.1; }
+        66%  { opacity: 0.7; }
+        100% { opacity: 0.5; }
     }
 
     .profile {
@@ -198,7 +214,6 @@
 
     .contact a:hover {
         box-shadow: inset 0 0 1rem #333;
-        transform: scale(1);
     }
 
     .contact a:active {
@@ -232,7 +247,6 @@
 
     .foot a:hover {
         box-shadow: inset 0 0 1rem black;
-        transform: scale(1);
     }
 
     .foot a:active {
@@ -255,8 +269,9 @@
 
     <div class="container">
         <div class="cover">
-            <div class="glow"></div>
-            <div class="glow glow2"></div>
+            <div class="glow glow-cyan"></div>
+            <div class="glow glow-purple"></div>
+            <div class="glow glow-teal"></div>
         </div>
         <div class="profile">
             <img src="./istockphoto-1327592506-612x612.jpg" alt="profile-picture">

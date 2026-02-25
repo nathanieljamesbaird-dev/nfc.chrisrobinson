@@ -248,7 +248,7 @@ h3 {
     <div class="longbar"></div>
     <div class="foot">
         <a href="./contact.vcf">Save Contact</a>
-        <a href="./fun.html">Fun</a>
+        <a  href="#" onclick="startVibration()">Fun</a>
     </div>
 
 
@@ -267,13 +267,19 @@ h3 {
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
 
+function startVibration() {
 
-  const card = document.querySelector(".card");
+  // Check if device supports vibration
+  if ("vibrate" in navigator) {
 
-  card.addEventListener("click", () => {
-    card.classList.toggle("flipped");
-  });
+    // Vibrate pattern
+    navigator.vibrate([200, 100, 200, 100, 500]);
 
+  } else {
+    alert("Vibration not supported on this device.");
+  }
+
+}
 
 
 
